@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sushi_restaurant_flutter/compoments/button.dart';
+import 'package:sushi_restaurant_flutter/compoments/food_tittle.dart';
+import 'package:sushi_restaurant_flutter/models/food.dart';
 import 'package:sushi_restaurant_flutter/theme/color.dart';
 
 class MenuPage extends StatefulWidget {
@@ -11,6 +13,46 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
+  //food menu
+  List foodMenu = [
+    Food(
+        name: "salmon sushi",
+        price: "30",
+        imagePath: "lib/images/820582.png",
+        rating: "4.9"),
+    //salmon sushi
+    Food(
+        name: "salmon sushi",
+        price: "30",
+        imagePath: "lib/images/820582.png",
+        rating: "4.9"),
+    Food(
+        name: "salmon sushi",
+        price: "30",
+        imagePath: "lib/images/820582.png",
+        rating: "4.9"),
+    Food(
+        name: "salmon sushi",
+        price: "30",
+        imagePath: "lib/images/820582.png",
+        rating: "4.9"),
+    Food(
+        name: "salmon sushi",
+        price: "30",
+        imagePath: "lib/images/820582.png",
+        rating: "4.9"),
+    Food(
+        name: "salmon sushi",
+        price: "30",
+        imagePath: "lib/images/820582.png",
+        rating: "4.9"),
+    Food(
+        name: "salmon sushi",
+        price: "30",
+        imagePath: "lib/images/820582.png",
+        rating: "4.9"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,6 +121,7 @@ class _MenuPageState extends State<MenuPage> {
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
                     borderRadius: BorderRadius.circular(20)),
+                hintText: "Seach here....",
               ),
             ),
           ),
@@ -94,6 +137,58 @@ class _MenuPageState extends State<MenuPage> {
                 color: Colors.grey[800],
                 fontSize: 18,
               ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Expanded(
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: foodMenu.length,
+              itemBuilder: (context, index) => FoodTittle(
+                food: foodMenu[index],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          //popularFood
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(25)),
+            margin: EdgeInsets.only(left: 10, right: 25, bottom: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                //image
+                Image.asset(
+                  "lib/images/820582.png",
+                  height: 60,
+                ),
+
+                Column(
+                  children: [
+                    Text(
+                      "Salmon",
+                      style: GoogleFonts.dmSerifDisplay(
+                        fontSize: 18,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text("\$21.00"),
+                  ],
+                ),
+                Icon(
+                  Icons.favorite_outline,
+                  color: Colors.grey,
+                  size: 28,
+                )
+              ],
             ),
           ),
         ],
