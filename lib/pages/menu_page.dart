@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sushi_restaurant_flutter/compoments/button.dart';
 import 'package:sushi_restaurant_flutter/compoments/food_tittle.dart';
 import 'package:sushi_restaurant_flutter/models/food.dart';
+import 'package:sushi_restaurant_flutter/pages/food_details.dart';
 import 'package:sushi_restaurant_flutter/theme/color.dart';
 
 class MenuPage extends StatefulWidget {
@@ -22,10 +23,10 @@ class _MenuPageState extends State<MenuPage> {
         rating: "4.9"),
     //salmon sushi
     Food(
-        name: "salmon sushi",
-        price: "30",
-        imagePath: "lib/images/820582.png",
-        rating: "4.9"),
+        name: "Tuna sushi",
+        price: "50",
+        imagePath: "lib/images/food_16145708.png",
+        rating: "3.9"),
     Food(
         name: "salmon sushi",
         price: "30",
@@ -49,9 +50,19 @@ class _MenuPageState extends State<MenuPage> {
     Food(
         name: "salmon sushi",
         price: "30",
-        imagePath: "lib/images/820582.png",
+        imagePath: "lib/images/sushi_820582.png",
         rating: "4.9"),
   ];
+  //navigator to food item details page
+  void navigateToFoodDetail(int index) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => FoodDetailsPage(
+            food: foodMenu[index],
+          ),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,6 +159,7 @@ class _MenuPageState extends State<MenuPage> {
               itemCount: foodMenu.length,
               itemBuilder: (context, index) => FoodTittle(
                 food: foodMenu[index],
+                onTap: () => navigateToFoodDetail(index),
               ),
             ),
           ),
