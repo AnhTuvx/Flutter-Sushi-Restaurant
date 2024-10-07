@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:sushi_restaurant_flutter/compoments/button.dart';
 import 'package:sushi_restaurant_flutter/compoments/food_tittle.dart';
-import 'package:sushi_restaurant_flutter/models/food.dart';
+import 'package:sushi_restaurant_flutter/models/shopfood.dart';
 import 'package:sushi_restaurant_flutter/pages/food_details.dart';
 import 'package:sushi_restaurant_flutter/theme/color.dart';
 
@@ -14,47 +15,11 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  //food menu
-  List foodMenu = [
-    Food(
-        name: "salmon sushi",
-        price: "30",
-        imagePath: "lib/images/820582.png",
-        rating: "4.9"),
-    //salmon sushi
-    Food(
-        name: "Tuna sushi",
-        price: "50",
-        imagePath: "lib/images/food_16145708.png",
-        rating: "3.9"),
-    Food(
-        name: "salmon sushi",
-        price: "30",
-        imagePath: "lib/images/820582.png",
-        rating: "4.9"),
-    Food(
-        name: "salmon sushi",
-        price: "30",
-        imagePath: "lib/images/820582.png",
-        rating: "4.9"),
-    Food(
-        name: "salmon sushi",
-        price: "30",
-        imagePath: "lib/images/820582.png",
-        rating: "4.9"),
-    Food(
-        name: "salmon sushi",
-        price: "30",
-        imagePath: "lib/images/820582.png",
-        rating: "4.9"),
-    Food(
-        name: "salmon sushi",
-        price: "30",
-        imagePath: "lib/images/sushi_820582.png",
-        rating: "4.9"),
-  ];
   //navigator to food item details page
   void navigateToFoodDetail(int index) {
+    //get the shop and menu
+    final shop = context.read<Shop>();
+    final foodMenu = shop.foodMenu;
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -66,21 +31,29 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   Widget build(BuildContext context) {
+    //get the shop and menu
+    final shop = context.read<Shop>();
+    final foodMenu = shop.foodMenu;
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey[800],
         elevation: 8,
         leading: Icon(
           Icons.menu,
-          color: Colors.grey[900],
         ),
         title: Text(
           "Tokyo",
-          style: TextStyle(
-            color: Colors.grey[900],
-          ),
+          style: TextStyle(),
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/cartpage');
+              },
+              icon: Icon(Icons.shopping_cart))
+        ],
       ),
       body: Column(
         children: [

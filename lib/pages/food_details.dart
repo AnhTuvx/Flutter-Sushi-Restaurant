@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:sushi_restaurant_flutter/compoments/button.dart';
 import 'package:sushi_restaurant_flutter/models/food.dart';
+import 'package:sushi_restaurant_flutter/models/shopfood.dart';
 import 'package:sushi_restaurant_flutter/theme/color.dart';
 
 class FoodDetailsPage extends StatefulWidget {
@@ -29,7 +31,41 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
     });
   }
 
-  void addtocart() {}
+  void addtocart() {
+    //only addtocard if thereis something in the cart
+    if (quantityCount > 0) {
+      //get access the shop
+      final shop = context.read<Shop>();
+      shop.addToCart(widget.food, quantityCount);
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          backgroundColor: primaryColor,
+          content: Text(
+            "Succesful added to cart ",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          actions: [
+            //ok button
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.done,
+                  color: Colors.white,
+                ))
+          ],
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

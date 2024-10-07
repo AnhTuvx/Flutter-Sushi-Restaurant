@@ -32,7 +32,7 @@ class IntroPage extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.all(50.0),
-              child: Image.asset("lib/images/kappa-maki_5053383.png"),
+              child: Image.asset("lib/images/logo.jpg"),
             ),
             SizedBox(
               height: 25,
