@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sushi_restaurant_flutter/compoments/button.dart';
 import 'package:sushi_restaurant_flutter/models/food.dart';
@@ -41,15 +42,18 @@ class CartPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8)),
                     margin: EdgeInsets.only(left: 20, top: 20, right: 20),
                     child: ListTile(
+                      leading: Image.asset(food.imagePath),
                       title: Text(
                         foodName,
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.dmSerifDisplay(
+                            fontSize: 25, color: Colors.white),
                       ),
                       subtitle: Text(
-                        foodPrice,
+                        foodPrice + "\$",
                         style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
                       ),
                       trailing: IconButton(
                         icon: Icon(
